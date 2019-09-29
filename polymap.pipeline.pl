@@ -65,7 +65,6 @@ if ($step == 4) {
 	`$job`;
 	$step++ if ($step ne $stop);
 }
-
 if ($step == 5) {
 	open SH5,">$dsh/05.output.stat.sh";
 	print SH5 "Rscript $Bin/bin/step05.output.stat.R --out $out &&";
@@ -74,7 +73,6 @@ if ($step == 5) {
 	`$job`;
 	$step++ if ($step ne $stop);
 }
-
 #######################################################################################
 print STDOUT "\nDone. Total elapsed time : ",time()-$BEGIN_TIME,"s\n";
 #######################################################################################
@@ -97,8 +95,6 @@ sub ABSOLUTE_DIR #$pavfile=&ABSOLUTE_DIR($pavfile);
 	chdir $cur_dir;
 	return $return;
 }
-
-
 sub USAGE {#
         my $usage=<<"USAGE";
 Contact:        meng.luo\@majorbio.com;
