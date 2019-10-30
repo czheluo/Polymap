@@ -1,14 +1,10 @@
 
 library(polymapR)
-
 map<-read.csv("poly10Xpos.csv",header=T)
 ALL_dosages<-read.csv("poly10X.csv",header=T)
-
 P1<-"F"
 P2<-"M"
-
 all_dosages_list<-list()
-
 nmap<-unique(map$Chr)
 
 for (i in 1:length(nmap)) {
@@ -765,7 +761,6 @@ for(i in 1:7){
 					)
 }
 
-
 phased.maplist_P2NEW<-list()
 
 for (i in 1:7){
@@ -817,8 +812,6 @@ for (i in 1: length(snpnameall)){
 
 }
 
-
-
 SNP_SSR<-list()
 
 for (i in 1:length(phased.maplist_P1)){
@@ -846,20 +839,14 @@ for (i in 1: length(SNP_SSR)){
 write.TSNPM(phased.maplist = snpmap,ploidy=4)
 
 
-
 write.TSNPM(phased.maplist = phased.maplist_P1,ploidy=4)
 
 write.TSNPM(phased.maplist = phased.maplist_P2,ploidy=4)
-
-
-
-
 
 #plot phased the map plot
 plot_phased_maplist(phased.maplist = phased.maplist[1], #Can plot full list also, remove "[1]"
                     ploidy = 4,
                     cols = c("black","grey50","grey50"))
-
 
 
 
@@ -878,7 +865,6 @@ plot_map(maplist=integrated.maplist_P2)
 dev.off()
 
 
-
 png(paste("integrated.maplist_P1",".png",sep=""),width=1600, height=900)
 
 plot_map(maplist=integrated.maplist_P1)
@@ -890,9 +876,6 @@ pdf(paste("integrated.maplist_P1",".pdf",sep=""),width=16, height=9)
 plot_map(maplist=integrated.maplist_P1)
 
 dev.off()
-
-
-
 
 png(paste("integrated.maplist_all_new",".png",sep=""),width=1600, height=900)
 
@@ -915,9 +898,6 @@ plot_phased_maplist(phased.maplist = phased.maplist[1], #Can plot full list also
                     cols = c("black","grey50","grey50"))
 
 
-
-
-
 #remove the unnormal data
 #integrated.maplist_P2[[2]][,2]<-integrated.maplist_P2[[2]][,2]-integrated.maplist_P2[[2]][1,2]
 #integrated.maplist[[2]][,2]<-integrated.maplist[[2]][,2]-integrated.maplist[[2]][2,2]
@@ -930,11 +910,6 @@ for (i in 1:length(SN_SN_P)) {
   check_map(linkage_list = list(SN_SN_P[[i]]), maplist = list(integrated.maplist[[i]]))
 
 }
-
-
-
-
-
 
 
 ###make the collinerity
@@ -962,12 +937,6 @@ for (i in 1: length(snpnameall)){
 }
 
 
-
-
-
-
-
-
 setwd("H:\\PROJECT\\wanhuihua\\RESULT")
 load("example_maplist.RDdata")
 
@@ -987,8 +956,6 @@ posmat <- matrix(c(maplist[[l]][match(linkage_list[[l]]$marker_a,
                                       maplist[[l]]$marker), ]$position, linkage_list[[l]]$r,
                    linkage_list[[l]]$LOD), ncol = 4)
 
-
-
 if (mapfn == "haldane") {
   expected.recom <- rev.haldane(abs(posmat[, 1] -
                                       posmat[, 2]))
@@ -997,13 +964,10 @@ if (mapfn == "haldane") {
                                       posmat[, 2]))
 }
 
-
 dev <- abs(linkage_list[[l]]$r - expected.recom)
 wRMSE <- sqrt(mean((dev * linkage_list[[l]]$LOD)^2))
 layout(matrix(c(1, 1, 1, 1, 2, 3, 4, 5), ncol = 4, byrow = TRUE),
        widths = c(1, 0.2, 1, 0.2))
-
-
 
 pdf(paste("ALL_sample_LG1",".pdf",sep=""),width=16, height=9)
 
@@ -1022,9 +986,6 @@ legend("topright", legend = paste("Weighted RMSE =",
                                   round(wRMSE, 3)), bty = "n")
 colours <- colorRampPalette(c("green", "yellow", "orange",
                               "red"))(100)
-
-
-
 lod.thresh<-5
 ##remove all the NAN data
 
@@ -1071,7 +1032,6 @@ plot(posmat[posmat[, 4] > lod.thresh, 1], posmat[posmat[,
      cex = 3, xlab = "cM", ylab = "cM")
 
 dev.off()
-
 par(mar = colbar.mar)
 colour.bar(col.data = colours, min = LODcolmin, max = LODcolmax,
            nticks = 8, ticks = round(seq(LODcolmin, LODcolmax,
@@ -1079,10 +1039,4 @@ colour.bar(col.data = colours, min = LODcolmin, max = LODcolmax,
 mtext(text = paste("LG", l, "map diagnostics"), side = 3,
       outer = TRUE, cex = 2)
 par(mfrow = c(1, 1), oma = c(0, 0, 0, 0), mar = orig.mar)
-
-
-
-
-
-
 
