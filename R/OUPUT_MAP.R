@@ -11,8 +11,6 @@ for(i in 1:7){
 
   }
 
-
-
 for(i in 1:7){
   if(i==2){
     integrated.maplist_P2[[i]] <- integrated.maplist_P2[[i]][-1,]
@@ -23,8 +21,6 @@ for(i in 1:7){
   }
 
 }
-
-
 
 for(i in 1:7){
   if(i==1){
@@ -194,7 +190,6 @@ Genetype<-do.call(rbind,Genetype_PP)
 write.table(Genetype,file="Genetype_PP.txt",
             quote = F,row.names = F,col.names = T)
 
-
 all_stats<-as.matrix(cbind(MarN,MapD,AvD,MaxG))
 
 colnames(all_stats)<-c("Mar Num","Map Distance","Aver Distance","Max Gap")
@@ -204,31 +199,8 @@ for(i in 1:7){
 }
 write.csv(all_stats,file = "stats_PP.csv",quote=F,row.names=T)
 
-
-
-
-
-
-
-
-
-
-
-
-
 chr<-unique(dis[,1])
 gap<-NULL
 
 for (i in 1:length(chr)){gap[i]<-max(dis[which(dis[,1] %in% chr[i]),2])-min(dis[which(dis[,1] %in% chr[i]),2])}
-
-
-
-
-
-
-
-
-
-
-
 
