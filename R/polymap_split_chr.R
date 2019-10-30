@@ -1,13 +1,10 @@
 
-
 t<-t(dosage)
 tr<-tr[names(sort(tr[,1],decreasing=F)),]
 all_dosage<-data.frame(dosage[,c(1,189,190],tr)
 all_dosage<-data.frame(dosage[,c(1,189,190],tr)
-
 P1<-"F"
 P2<-"M"
-
 ALL_dosages<-read.csv("dosage_10x_snp.csv",header=T)
 map<-read.csv("dosage_10x_pos.csv",header=T)
 rownames(ALL_dosages)<-ALL_dosages[,1]
@@ -187,8 +184,6 @@ all_linkages_list_P2_chr1[[i]] <- finish_linkage_analysis(marker_assignment = ma
                                                 pairing = "random",
                                                 LG_number = 1)
 
-
-
 integrated.maplist_P1_chr1[[i]] <- MDSMap_from_list(all_linkages_list_P1_chr1[[i]],write_to_file = FALSE)
 
 
@@ -196,8 +191,6 @@ integrated.maplist_P2_chr1[[i]] <- MDSMap_from_list(all_linkages_list_P2_chr1[[i
 
 
 }
-
-
 
 linkages_chr1 <- list()
 for(i in 1:7){
@@ -230,8 +223,6 @@ for (i in 1:7){
 	}
 
 names(integrated.maplist_P2_chr1new)<-c("LG1","LG2","LG3","LG4","LG5","LG6","LG7")
-
-
 
 linkages_chr1 <- list()
 for(i in 1:7){
@@ -290,8 +281,6 @@ plot_map(maplist=integrated.maplist_P1_chr1new)
 
 dev.off()
 
-
-
 ####keep the result
 
 
@@ -331,10 +320,7 @@ write.csv(mappp,file="integrated.maplist_P1_chr1.csv",quote=F,row.names=F)
 mappp<-do.call(rbind,unname(integrated.maplist_P2_chr1new))
 write.csv(mappp,file="integrated.maplist_P2_chr1.csv",quote=F,row.names=F)
 
-
 ###bin
-
-
 all_linkages_list_P1_chr_bin<-list()
 for (i in 1:7){
 all_linkages_list_P1_chr_bin[[i]]<-all_linkages_list_P1_chr1[[i]][1]$LG1
@@ -343,7 +329,6 @@ all_linkages_list_P2_chr_bin<-list()
 for (i in 1:7){
 all_linkages_list_P2_chr_bin[[i]]<-all_linkages_list_P2_chr1[[i]][1]$LG1
 }
-
 
 genotype<-do.call(rbind,unname(filtered_data))
 
@@ -371,57 +356,30 @@ for (i in 1:7){
 }
 
 names(all_linkages_list_P2_bin)<-c("LG1","LG2","LG3","LG4","LG5","LG6","LG7")
-
-
 linkages_bin <- list()
 
 for(lg in names(all_linkages_list_P1_bin)){
   linkages_bin[[lg]] <- rbind(all_linkages_list_P1_bin[[lg]],all_linkages_list_P2_bin[[lg]])
 }
 
-
-
 times<-Sys.time()
 
 integrated.maplist_P1_bin <- MDSMap_from_list(all_linkages_list_P1_bin,write_to_file = TRUE)
 
 cal_linkage<-Sys.time()-times
-
-
 times<-Sys.time()
-
 integrated.maplist_P2_bin <- MDSMap_from_list(all_linkages_list_P2_bin,write_to_file = TRUE)
-
 cal_linkage<-Sys.time()-times
-
-
 times<-Sys.time()
 
 integrated.maplist_bin <- MDSMap_from_list(linkages_bin,write_to_file = TRUE)
 
 cal_linkage<-Sys.time()-times
 
-
 mapp1_bin<-do.call(rbind,unname(integrated.maplist_P1_bin))
 write.csv(mapp1_bin,file="integrated.maplist_P1_bin.csv",quote=F,row.names=F)
-
-
 mapp2_bin<-do.call(rbind,unname(integrated.maplist_P2_bin))
 write.csv(mapp2_bin,file="integrated.maplist_P2_bin.csv",quote=F,row.names=F)
-
-
 mappp_bin<-do.call(rbind,unname(integrated.maplist_bin))
 write.csv(mappp_bin,file="integrated.maplist_bin.csv",quote=F,row.names=F)
-
-
-
-
-
-
-
-
-
-
-
-
 
