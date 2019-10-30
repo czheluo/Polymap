@@ -61,15 +61,9 @@ text(x=bp,y=pq_before_convert,labels = round(pq_before_convert,0),pos=3,xpd=NA)
 
 dev.off()
 
-
-
-
-
-
 for(i in 1:4){
   text(i-0.2,pq_before_convert[i]+200,t(pq_before_convert)[i])
 }
-
 
 pq_before_convert <- parental_quantities(
   dosage_matrix = ALL_dosages_a,parent1 = P1,parent2 = P2,
@@ -81,7 +75,4 @@ bp = barplot(tmp, names=c("site 1", "site 2", "site 3", "site 4") )
 text(x=bp, y=tmp, labels=round(tmp,0), pos=3, xpd=NA)
 # numbers within bars
 text(x=bp, y=tmp, labels=round(tmp,0), pos=1)
-
-
-
 
