@@ -31,7 +31,7 @@ if ($step==1) {
 	print SH1 "perl $Bin/bin/vcf2dosage.pl -vcf $vcf -out $out/01.vcf-convert -pid $pid -mid $mid -dat $out/01.vcf-convert/snpdata.dat -dep $out/01.vcf-convert/dosage.matrix.dep -map $out/01.vcf-convert/dosage.matrix.map &&";
 	print SH1 "Rscript $Bin/bin/step01.filter.R --out $out --pid $pid --mid $mid "
 	close SH1;
-	my $job="perl /mnt/ilustre/users/dna/.env//bin//qsub-sge.pl --Queue dna --Resource mem=10G --CPU 3  $dsh/01.vcf-convert.sh";
+	my $job="perl qsub-sge.pl --Queue dna --Resource mem=10G --CPU 3  $dsh/01.vcf-convert.sh";
 	`$job`;
 	$step++ if ($step ne $stop);
 }
@@ -40,7 +40,7 @@ if ($step == 2) {
 	print SH2 "Rscript $Bin/bin/step02.linkage.R --pid $pid --mid $mid ";
 	print SH2 "perl "
 	close SH2;
-	my $job="perl /mnt/ilustre/users/dna/.env//bin//qsub-sge.pl --Queue dna --Resource mem=10G --CPU 3  $dsh/02.linkage.sh";
+	my $job="perl qsub-sge.pl --Queue dna --Resource mem=10G --CPU 3  $dsh/02.linkage.sh";
 	`$job`;
 	$step++ if ($step ne $stop);
 }
@@ -52,7 +52,7 @@ if ($step == 3) {
 	print SH3 "perl $Bin/bin/drawAligmentRalationMap.pl -m $out/step3.evaluating.map/total.male.map -k $out/step3.evaluating.map/total.male -o $out/step3.evaluating.map && "
 	print SH3 "perl $Bin/bin/drawAligmentRalationMap.pl -m $out/step3.evaluating.map/total.sexAver.map -k $out/step3.evaluating.map/total.sexAver -o $out/step3.evaluating.map"
 	close SH3;
-	my $job="perl /mnt/ilustre/users/dna/.env//bin//qsub-sge.pl --Queue dna --Resource mem=3G --CPU 1  $dsh/03.evaluating.map.sh";
+	my $job="perl qsub-sge.pl --Queue dna --Resource mem=3G --CPU 1  $dsh/03.evaluating.map.sh";
 	`$job`;
 	$step++ if ($step ne $stop);
 }
