@@ -49,7 +49,7 @@ install.packages("getopt") # https://cran.r-project.org/web/packages/getopt/inde
 ```
 ### Note : Pipeline was running in Linux environment 
 
-### Some of My Rosa chinensis genetic mapping results
+### Some of My Rosa chinensis project genetic mapping results
 
 * Marker segregation summary
 ![segregation summary](Fig/dosages_stats.jpg "segregation summary")
