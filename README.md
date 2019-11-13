@@ -31,7 +31,7 @@ and then install polyRAD from CRAN with :
 install.packages("polyRAD")
 ```
 #### Updog
-You can install updog from CRAN in the usual way:
+Updog provides a suite of methods for genotyping polyploids from next-generation sequencing (NGS) data. You can install updog from CRAN in the usual way:
 ```r
 install.packages("updog")
 ```
